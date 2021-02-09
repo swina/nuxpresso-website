@@ -176,6 +176,11 @@ export default {
   googleAnalytics: {
     id: process.env.GOOGLE_ANALYTICS || 'UA-XXX-X'
   },
+  publicRuntimeConfig: {
+    googleAnalytics: {
+      id: process.env.GOOGLE_ANALYTICS
+    }
+  },
   /*
    ** Build and generate configuration
    */
