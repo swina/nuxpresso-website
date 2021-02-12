@@ -7,6 +7,7 @@ import defaultComponent from '~/apollo/queries/component/component.default'
 import componentsQuery from '~/apollo/queries/component/components'
 import loopQuery from '@/apollo/queries/article/articles-by-category'
 import loopComponent from '~/apollo/queries/component/component.loop'
+import themesQuery from '~/apollo/queries/theme/themes'
 export const strict = false
 
 export const state = () => ({
@@ -23,7 +24,8 @@ export const state = () => ({
     loop_action: null,
     loop_template: null,
     loop_articles:[],
-    popup: false
+    popup: false,
+    themes: null
 })
 
 export const mutations = {
@@ -66,6 +68,9 @@ export const mutations = {
     },
     SET_LOOP_ARTICLES ( state , articles  ){
         state.loop_articles = articles 
+    },
+    SET_THEMES ( state , themes ){
+        state.themes = themes
     }
 }
 
@@ -79,6 +84,9 @@ export const actions = {
 
         const articles = await this.app.apolloProvider.defaultClient.query( { query : loopQuery })
         commit ( 'SET_LOOP_ARTICLES' , articles.data.articles )
+
+        const themes = await this.app.apolloProvider.defaultClient.query( { query : themesQuery })
+        commit ( 'SET_THEMES' , themes.data.themes)
     },
     
     async loadSettings ( { commit } ){

@@ -21,8 +21,8 @@ function importAssets(){
 //default dynamic routes used by nuxpresso
 let dynamicRoutes = () => {
   //import assets before
-  process.env.FULL_STATIC && process.env.LOCAL_ASSETS ? importAssets() : null
-
+  //process.env.FULL_STATIC && process.env.LOCAL_ASSETS ? importAssets() : null
+  importAssets()
   //generate dynamic routes /category/<category_slug>
   return new Promise(resolve => {
     axios.get( process.env.API_URL + 'categories' ).then ( response => {

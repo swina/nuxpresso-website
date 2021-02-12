@@ -1,39 +1,19 @@
 query Themes {
   themes {
-    Header { 
-      ... on ComponentWidgetsLogo {
-        image {
-          url
-        }
-      }
-      ... on ComponentMenuItemsNavigation {
-        navigation_item {
-          id
-          name
-          URL
-          article {
-            slug
-          }
-          category {
-            slug
-          }
-        }
-      }
+    id
+    name
+    attachment {
+      name
+      url
     }
-    Sidebar {
-      ... on ComponentMenuItemsNavigation {
-        navigation_item {
-          id
-          name
-          URL
-          article {
-            slug
-          }
-          category {
-            slug
-          }
-        }
-      }
+    featured {
+      name
+      url
     }
+    author
+    version
+    enabled
+    premium
+    updated_at
   }
 }
