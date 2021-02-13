@@ -1,11 +1,12 @@
 <template>
-    <div>
-        <template v-for="theme in themes">
+    <client-only>
+        {{themes}}
+    </client-only>
+        <!--<template v-for="theme in themes">
             {{ theme.name }} 
             <img :src="theme.featured.url" class="w-20"/>
             
-        </template>
-    </div>
+        </template>-->
 </template>
 
 <script>

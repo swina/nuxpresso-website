@@ -5,7 +5,7 @@ import fs from 'fs-extra'
 dotenv.config()
 console.log (  'Strapi CMS => ' , process.env.API_URL )
 
-//Full Static mode and local upload copy Strapi uploads folder to static folder
+//Full Static mode and local upload : copy Strapi uploads folder to static folder
 function importAssets(){
   // With Promises:
   console.log ( 'Importing assets ...')
@@ -21,6 +21,7 @@ function importAssets(){
 //default dynamic routes used by nuxpresso
 let dynamicRoutes = () => {
   //import assets before
+  console.log ( process.env.FULL_STATIC , process.env.LOCAL_ASSETS )
   //process.env.FULL_STATIC && process.env.LOCAL_ASSETS ? importAssets() : null
   importAssets()
   //generate dynamic routes /category/<category_slug>
@@ -35,19 +36,19 @@ let dynamicRoutes = () => {
             payload: response.data
           }
         })
-        resolve ( categories )
+        //resolve ( categories )
         //your dynamic route goes here example
-        /*
-        axios.get( process.env.API_URL + 'articles/4' ).then( response => {
+        
+        axios.get( process.env.API_URL + 'themes' ).then( response => {
           const myroute = 
             {
-              route: '/' + response.data.slug,
+              route: '/themes',
               payload: response.data
             }
           
           resolve ( categories.concat(myroute) ) //remove resolve (categories)
         })    
-        */
+        
       })
     })
   })
@@ -154,7 +155,9 @@ export default {
     "@nuxtjs/markdownit",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/axios"
+
   ],
+  
   markdownit: {
     preset: "default",
     linkify: true,
