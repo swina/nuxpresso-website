@@ -40,7 +40,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 gsap.registerPlugin ( ScrollTrigger )
 const plugins = [ScrollTrigger];
 import axios from 'axios'
-
+import validator from 'validator'
 export default {
     name: 'MokaPreviewForm',
     components: { MokaElement , MokaPreviewContainer  },
@@ -130,7 +130,7 @@ export default {
                 vm.response = '<p class="animate-pulse">Sendig your request ...</p>'
                 vm.responseClass = 'text-blue-400'
                 this.enabled = false
-                fetch( process.env.emailSender , {
+                fetch( this.doc.action || process.env.emailSender , {
                     mode: 'no-cors',
                     method: 'POST',
                     headers: { "Content-Type": "application/x-www-form-urlencoded" },
